@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  demo:
+    image: registry.gitlab.com/m_gri/social-aggregator:0.0.1-SNAPSHOT
+    container_name: social-aggregator
+    networks:
+      - social-aggregator-network
+    command: ["./wait-for-it.sh", "http://db:7474", "--", "karaf", "run"]
+
+networks:
+  social-aggregator-network:

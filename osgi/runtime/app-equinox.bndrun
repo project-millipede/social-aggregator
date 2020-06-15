@@ -1,0 +1,29 @@
+index: target/index.xml;name="app-equinox"
+
+-standalone: ${index}
+
+-resolve.effective: resolve,active
+
+-runsystempackages: \
+    sun.misc
+
+-runfw: org.eclipse.osgi
+
+-runproperties: osgi.console=, osgi.console.enable.builtin=false
+
+-runee: JavaSE-11
+
+// feature.gogo: \
+//     bnd.identity;id='org.apache.felix.gogo.command',\
+//     bnd.identity;id='org.apache.felix.gogo.jline',\
+//     bnd.identity;id='org.apache.felix.gogo.runtime',\
+// -> runtime is enough, no shell necessary
+//     bnd.identity;id='org.apache.felix.gogo.shell',
+
+feature.gogo: \
+    bnd.identity;id='org.apache.felix.gogo.command',\
+    bnd.identity;id='org.apache.felix.gogo.jline',\
+	bnd.identity;id='org.apache.felix.gogo.runtime'
+
+-runrequires: \
+    ${feature.gogo}

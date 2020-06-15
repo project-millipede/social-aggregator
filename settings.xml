@@ -14,7 +14,20 @@
                 </httpHeaders>
             </configuration>
         </server>
+        <server>
+            <!--registry.gitlab.com-->
+            <id>${REGISTRY_PUSH_URL}</id>
+            <username>${env.REGISTRY_PUSH_USERNAME}</username>
+            <password>${env.REGISTRY_PUSH_PASSWORD}</password>
+        </server>
+        <server>
+            <!--docker.io-->
+            <id>${REGISTRY_PULL_URL}</id>
+            <username>${env.REGISTRY_PULL_USERNAME}</username>
+            <password>${env.REGISTRY_PULL_PASSWORD}</password>
+        </server>
     </servers>
+
 
     <profiles>
         <profile>
@@ -27,6 +40,28 @@
                 <snapshots.repo.url>https://gitlab.com/api/v4/projects/${env.CI_PROJECT_ID}/packages/maven
                 </snapshots.repo.url>
             </properties>
+            <repositories>
+                <!--
+                Fragment bundle refresh - optional runtime dependency, hosted at Gitlab maven registry.
+
+                Restore the integrity of fragment bundles within Apache Karaf and Apache Felix as the selected
+                runtime option.
+
+                Note:
+                Fragment bundle refresh is relevant for Apache Felix exclusively.
+                Equinox handles bundle refreshes out of the box.
+                -->
+                <repository>
+                    <id>gitlab-osgi-helper</id>
+                    <url>https://gitlab.com/api/v4/projects/18953434/packages/maven</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
         </profile>
     </profiles>
 

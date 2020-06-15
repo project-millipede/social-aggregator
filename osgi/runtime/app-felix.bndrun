@@ -1,0 +1,19 @@
+index: target/index.xml;name="app-felix"
+
+-standalone: ${index}
+
+-resolve.effective: resolve,active
+
+-runsystempackages: \
+    sun.misc
+
+-runfw: org.apache.felix.framework
+
+-runee: JavaSE-11
+
+feature.gogo: \
+    bnd.identity;id='org.apache.felix.gogo.command',\
+    bnd.identity;id='org.apache.felix.gogo.jline',
+
+-runrequires: \
+    ${feature.gogo}
