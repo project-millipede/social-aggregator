@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.millipede</groupId>
+        <artifactId>millipede-social-aggregator-osgi</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>millipede-social-aggregator-osgi-karaf</artifactId>
+
+    <packaging>pom</packaging>
+
+    <name>Millipede :: Social :: Aggregator :: OSGi :: Karaf</name>
+
+    <description>Orchestration option for the Apache Karaf runtime environment.</description>
+
+    <properties>
+        <karaf.version>4.3.0.RC1</karaf.version>
+        <karaf-maven-plugin.version>4.3.0.RC1</karaf-maven-plugin.version>
+    </properties>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.karaf.tooling</groupId>
+                    <artifactId>karaf-maven-plugin</artifactId>
+                    <version>${karaf-maven-plugin.version}</version>
+                    <extensions>true</extensions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <modules>
+        <module>feature</module>
+    </modules>
+
+    <profiles>
+        <profile>
+            <id>docker</id>
+            <activation>
+                <property>
+                    <name>skipDocker</name>
+                    <value>!true</value>
+                </property>
+            </activation>
+            <modules>
+                <module>distribution</module>
+            </modules>
+        </profile>
+    </profiles>
+
+</project>
