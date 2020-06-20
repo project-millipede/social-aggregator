@@ -22,12 +22,19 @@
     <properties>
         <osgi.promise.version>7.0.1</osgi.promise.version>
         <org.osgi.service.log.version>1.4.0</org.osgi.service.log.version>
+        <org.apache.felix.configadmin.version>1.9.16</org.apache.felix.configadmin.version>
         <org.apache.felix.scr.version>2.1.20</org.apache.felix.scr.version>
         <bndrun.file>placeholder.bndrun</bndrun.file>
     </properties>
 
     <dependencies>
         <!-- Artifacts :: OSGi Features -->
+        <!-- Artifacts :: OSGi Feature :: Config Admin -->
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.apache.felix.configadmin</artifactId>
+            <version>${org.apache.felix.configadmin.version}</version>
+        </dependency>
         <!-- Artifacts :: OSGi Feature :: Command Line -->
         <dependency>
             <groupId>org.apache.felix</groupId>
@@ -69,11 +76,57 @@
             <version>${org.osgi.service.log.version}</version>
         </dependency>
 
+        <!-- Apache Karaf feature - Config Extension - OSGi R7 Configurator, Config Admin Interpolation  -->
+        <dependency>
+            <groupId>org.millipede</groupId>
+            <artifactId>osgi-config-extension-feature</artifactId>
+            <version>1.0.0</version>
+            <type>xml</type>
+            <classifier>features</classifier>
+        </dependency>
+
         <!-- Artifacts :: Application Specific -->
         <!-- Artifacts :: Project Configuration -->
-        <!-- Artifacts :: Project dependencies -->
-        <!-- Artifacts :: Project -->
+        <dependency>
+            <groupId>org.millipede</groupId>
+            <artifactId>http-config</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
+        <!-- Artifacts :: Project dependencies -->
+        <dependency>
+            <groupId>org.apache.aries.jax.rs</groupId>
+            <artifactId>org.apache.aries.jax.rs.features.whiteboard</artifactId>
+            <version>${org.apache.aries.jax.rs.whiteboard.version}</version>
+            <type>xml</type>
+            <classifier>features</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.aries.jax.rs</groupId>
+            <artifactId>org.apache.aries.jax.rs.features.jackson</artifactId>
+            <version>${org.apache.aries.jax.rs.jackson.version}</version>
+            <type>xml</type>
+            <classifier>features</classifier>
+        </dependency>
+        <!-- Artifacts :: Project -->
+        <dependency>
+            <groupId>org.millipede</groupId>
+            <artifactId>millipede-social-aggregator-osgi-karaf-feature</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <type>xml</type>
+            <classifier>features</classifier>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.osgi</groupId>
+                    <artifactId>osgi.cmpn</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.aries.spifly</groupId>
+            <artifactId>org.apache.aries.spifly.dynamic.bundle</artifactId>
+            <version>1.2.3</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -190,6 +243,4 @@
             </dependencies>
         </profile>
     </profiles>
-
-
 </project>
