@@ -32,6 +32,14 @@
         <bnd.version>5.1.0</bnd.version>
         <maven-jar-plugin.version>3.0.1</maven-jar-plugin.version>
 
+        <org.apache.aries.jax.rs.whiteboard.version>1.0.9-SNAPSHOT</org.apache.aries.jax.rs.whiteboard.version>
+        <org.apache.aries.jax.rs.jackson.version>1.0.3-SNAPSHOT</org.apache.aries.jax.rs.jackson.version>
+
+        <!-- OSGi dependency version -->
+        <osgi.core.version>7.0.0</osgi.core.version>
+        <osgi.cmpn.version>7.0.0</osgi.cmpn.version>
+        <osgi.promise.version>7.0.1</osgi.promise.version>
+        <osgi.annotation.version>7.0.0</osgi.annotation.version>
     </properties>
 
     <distributionManagement>
@@ -45,8 +53,49 @@
         </snapshotRepository>
     </distributionManagement>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.osgi</groupId>
+                <artifactId>osgi.core</artifactId>
+                <version>${osgi.core.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.osgi</groupId>
+                <artifactId>osgi.cmpn</artifactId>
+                <version>${osgi.cmpn.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.osgi</groupId>
+                <artifactId>osgi.annotation</artifactId>
+                <version>${osgi.annotation.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.osgi</groupId>
+                <artifactId>osgi.promise</artifactId>
+                <version>${osgi.promise.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.aries.jax.rs</groupId>
+                <artifactId>org.apache.aries.jax.rs.whiteboard</artifactId>
+                <version>${org.apache.aries.jax.rs.whiteboard.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.aries.jax.rs</groupId>
+                <artifactId>org.apache.aries.jax.rs.jackson</artifactId>
+                <version>${org.apache.aries.jax.rs.jackson.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <modules>
         <module>osgi</module>
+        <module>http</module>
+        <module>endpoint</module>
+        <module>config</module>
     </modules>
 
     <build>

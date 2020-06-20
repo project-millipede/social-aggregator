@@ -6,7 +6,7 @@ services:
     container_name: social-aggregator
     networks:
       - social-aggregator-network
-    command: ["./wait-for-it.sh", "http://db:7474", "--", "karaf", "run"]
+    command: ["karaf", "run"]
 
 networks:
   social-aggregator-network:
