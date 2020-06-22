@@ -7,6 +7,10 @@ services:
     networks:
       - social-aggregator-network
     command: ["karaf", "run"]
+    environment:
+      - SOCIAL_AGGREGATOR_SERVER_HTTP_PORT=${SOCIAL_AGGREGATOR_SERVER_HTTP_PORT:-8090}
+    ports:
+      - '8000:${SOCIAL_AGGREGATOR_SERVER_HTTP_PORT:-8090}'
 
 networks:
   social-aggregator-network:
